@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  reservation_bot:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    # image: reservation_bot
+    environment:
+      TZ: Europe/Minsk
+    volumes:
+      - .:/app
+      - reservation-bot-data:/docker/reservation_bot/data
+    working_dir: /app
+    command: ["sh", "-c", "python -m main"]
+
+volumes:
+  reservation-bot-data:
